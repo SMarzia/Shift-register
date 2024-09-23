@@ -1,0 +1,16 @@
+const int latchPin = 14; // Pin connected to ST_CP
+const int clockPin = 27; // Pin connected to SH_CP
+const int dataPin = 12; // Pin connected to DS
+void setup() {
+pinMode(latchPin, OUTPUT);
+pinMode(clockPin, OUTPUT);
+pinMode(dataPin, OUTPUT);
+}
+void loop() {
+byte data = 0b10101010; // Data pattern (alternating LEDs on/off)
+// Send data to the shift register
+digitalWrite(latchPin, LOW); // Prepare to shift data
+shiftOut(dataPin, clockPin, LSBFIRST, data); // Shift data
+digitalWrite(latchPin, HIGH); // Latch the data to the output (update LEDs)
+delay(2000); // Wait for 1 second
+}
